@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<script type="text/javascript">
+
+  function onSubmit(){
+    fetch('https://test-personalcloud.att.com/att-pai/api/oauth/callback', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/vnd+synchronoss.auth.ericsson+json'
+      },
+
+      body: "{\"token\": \"x5mXY+E9JhgxGqTgo59R13K6iC0dH6y0jXPK7iy3Xh4=\"}"
+    }).then(function(response){ if(response.status===200) { return response.text(); }})
+        .then(function(data){ document.write(data) })
+    /*
+      if(response.status===200) {
+        /!*alert("shiva");
+        alert(response.statusText);
+        alert(response.headers);
+        alert(response.url);
+        alert(response.body.getReader());
+        alert(response.json());
+        alert(response.text());
+        alert(response.text().toString());*!/
+
+        document.write("<html><body><script>window.location=\"https://test-personalcloud.att.com/web\"\<\/script></body></html>");
+      }
+    })*/
+  }
+</script>
+
+<body>
+<p th:text="'Hello, ' + ${name} + '!'" />
+<form method="POST">
+    <!--<input type="button"  name="ClickMeToGoWeb" onclick="onSubmit()" />-->
+    <button type="button" onclick="onSubmit()">ClickMeToGoWeb!</button>
+</form>
+</body>
+</html>
